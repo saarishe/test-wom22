@@ -1,0 +1,5 @@
+@baseURL = https://fw-teaching.fi/demo/wdbocms/api/v1/products/
+
+###
+GET {{baseURL}}
+
