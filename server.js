@@ -2,44 +2,32 @@
 const express = require('express')
 //inistialisering
 const app = express()
+const mongoose = require('mongoose')
 //portnummer (om inte 3030 finns så hittar den rätta)
 const PORT = process.env.PORT || 3030
-//
-const helloRouter = require('./routes/hello.js')
+
+//import dotenv och läsa in .env-fil
+require('dotenv').config()
+console.log(process.env.PASS)
 
 
-//middleware
-const runAlways = (req, res, next) =>{
-     res.locals.myVar = 'this is from runAlways'
-    //kan lägga if satser if token valid
-    console.log(`A request was made to ${req.path}`)
-    next()
-}
+//connect to DB
+mongoose.connect(process.env.DB_URL)
+const db = mongoose.connection
+db.on('error', (error) => console.log(error))
+db.on('open', () => console.log('Connected to DB'))
 
-//middelware som körs ibland och kan ge restrictions till paths
-const runSometimes = (req, res, next) =>{
-    //kan lägga if satser if token valid
-    console.log(`sometimes`)
-    next()
-}
+//ta emot json
+app.use(express.json())
 
-app.use(runAlways)
-
-//lyssna på en get request
-// / = rotkatalogen
-// pil istället för function
-// req = request, res = response
 app.get('/', (req, res)=>{
-res.send(`Express says hello! ${res.locals.myVar}`)
-
+res.send(`Express says hello!`)
 })
 
-//hello path
-//res som json (kan skicka direkt objekt)
-app.use('/hello', helloRouter)
+const notesRouter = require('./routes/notes')
+app.use('/notes', notesRouter)
 
-//lyssna på server
-// call back funktion för att kolla att porten lyssnar
+
 app.listen(PORT, () =>{
     console.log(`Servern lyssnar på porten ${PORT}`)
 })
