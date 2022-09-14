@@ -24,7 +24,7 @@ app.get('/', (req, res)=>{
 res.send(`Express says hello!`)
 })
 
-const notesRouter = require('./routes/notes')
+const notesRouter = require('./routes/notesInMemory')
 app.use('/notes', notesRouter)
 
 

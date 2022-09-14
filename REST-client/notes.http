@@ -14,6 +14,7 @@ GET {{notesURL}}/notes/1
 
 POST {{notesURL}}/notes/
 Content-Type: application/json
+
 {
     "text": "Duscha"
 }
