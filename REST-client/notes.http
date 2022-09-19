@@ -1,5 +1,5 @@
 @notesURL = http://localhost:3030
-
+@azureURL = https://firstappwom.azurewebsites.net
 GET {{notesURL}}/
 
 ###

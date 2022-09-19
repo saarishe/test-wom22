@@ -1,4 +1,4 @@
-require.apply('dotenv').config()
+require('dotenv').config()
 const jwt = require('jsonwebtoken')
 
 module.exports = (req,res,next)=> {
@@ -13,6 +13,6 @@ module.exports = (req,res,next)=> {
         console.log(error.message)
         return res.status(401).send({msg: "Authorization failde", error: error.message})
     }
-    
+
     next()
 }
