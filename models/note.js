@@ -4,7 +4,7 @@ const mongoose = require('mongoose')
 
 //schema hur databasen uppbyggs
 const notesSchema = new mongoose.Schema({
-    "text": String 
+    text: String 
 }, {timestamps: true})
 
 //model

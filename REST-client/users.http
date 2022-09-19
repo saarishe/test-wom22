@@ -1,0 +1,23 @@
+@baseURL = http://localhost:3030
+
+GET {{baseURL}}/users
+
+### Skapa ny användare, skriv i json format
+
+POST {{baseURL}}/users
+Content-Type: application/json 
+
+{
+    "email": "hanna@gmail.fi",
+    "password": "Password1123"
+}
+
+### Logga in
+
+POST {{baseURL}}/users/login
+Content-Type: application/json 
+
+{
+    "email": "Olof@gmail.com",
+    "password": "Password1123"
+}

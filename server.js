@@ -8,8 +8,6 @@ const PORT = process.env.PORT || 3030
 
 //import dotenv och läsa in .env-fil
 require('dotenv').config()
-console.log(process.env.PASS)
-
 
 //connect to DB
 mongoose.connect(process.env.DB_URL)
@@ -24,10 +22,13 @@ app.get('/', (req, res)=>{
 res.send(`Express says hello!`)
 })
 
-const notesRouter = require('./routes/notesInMemory')
+const notesRouter = require('./routes/notes')
 app.use('/notes', notesRouter)
+
+const usersRouter = require('./routes/users')
+app.use('/users', usersRouter)
 
 
 app.listen(PORT, () =>{
-    console.log(`Servern lyssnar på porten ${PORT}`)
+    console.log(`Servern:${PORT}`)
 })
