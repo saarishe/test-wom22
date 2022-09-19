@@ -1,10 +1,12 @@
 const express = require('express')
 const router = express.Router()
 const bcrypt = require('bcrypt')
+const jwt = require('jsonwebtoken')
 
 const User = require('../models/user')
+const authToken = require('../middleware/checkAuth')
 
-router.get('/', async (req, res) => {
+router.get('/', authToken, async (req, res) => {
     const users = await User.find()
     res.send(users)
 })
@@ -32,16 +34,20 @@ router.post('/', async (req, res) => {
 router.post('/login', async (req, res) =>{
     const user = await User.findOne({email: req.body.email}).exec()
     if(user == null){
-        return res.status('401').send({msg: "No such user....?"})
+        return res.status(401).send({msg: "No such user....?"})
     }
 
     const pswMatch = await bcrypt.compare(req.body.password, user.password)
     if(!pswMatch){
-        return res.status('401').send({msg: "Wrong password"})
+        return res.status(401).send({msg: "Wrong password"})
 
     }
-
-    res.send("Log in succesfull")
+    const token = jwt.sign({
+        //id
+        sub: user._id,
+        email: user.email 
+    }, process.env.JWT_SECRET)
+    res.send({msg: "Log in succesfull", token: token})
 })
 
 module.exports = router
