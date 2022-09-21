@@ -6,9 +6,10 @@ const authToken = require('../middleware/checkAuth')
 
 router.get('/', authToken, async (req, res) => {
     try {
-        //console.log(req.authUser)
         //$ mongoose "not equal" 
-        const notes = await Note.find({ createdBy: req.authUser.sub, archived : {$ne:true} })
+        //kolla om url-variabel archived är ture (? if : else)
+        const isArchived = (req.query.archived) ? true : { $ne: true }
+        const notes = await Note.find({ createdBy: req.authUser.sub, archived: isArchived })
         res.send(notes)
     } catch (error) {
         res.status(500).send({ msg: error.message })
@@ -19,7 +20,7 @@ router.get('/', authToken, async (req, res) => {
 
 router.get('/:id', authToken, async (req, res) => {
     try {
-        const note = await Note.findOne({ _id: req.params.id })
+        const note = await Note.findOne({ _id: req.params.id, createdBy: req.authUser.sub })
         if (!note) return res.status(404).send({ msg: "Note not found?" })
         res.send(note)
     } catch (error) {
@@ -32,10 +33,10 @@ router.get('/:id', authToken, async (req, res) => {
 router.patch('/:id', authToken, async (req, res) => {
     try {
         const updatedNote = await Note.findOneAndUpdate(
-            {_id: req.params.id, createdBy:req.authUser.sub}, //id för note som ska uppdateras
+            { _id: req.params.id, createdBy: req.authUser.sub }, //id för note som ska uppdateras
             req.body, //nya texten
-            {new : true}) // uppdaterad version
-            res.send({msg: "Note Updated", updatedNote : updatedNote})
+            { new: true }) // uppdaterad version
+        res.send({ msg: "Note Updated", updatedNote: updatedNote })
     } catch (error) {
         res.status(500).send({ msg: error.message })
     }
@@ -56,7 +57,23 @@ router.post('/', authToken, async (req, res) => {
         res.status(500).send({ msg: error.message })
     }
     //notes.push(req.body)
-    res.send({ sparat: req.body })
+    //res.send({ sparat: req.body })
+})
+
+//ta bort
+router.delete('/:id', authToken, async (req, res) => {
+    try {
+        const note = await Note.deleteOne(
+            {
+                _id: req.params.id,
+                createdBy: req.authUser.sub
+            })
+        if (!note) return res.status(404).send({ msg: "Note not found?" })
+        res.send(note)
+    } catch (error) {
+        res.status(500).send({ msg: error.message })
+
+    }
 })
 
 module.exports = router

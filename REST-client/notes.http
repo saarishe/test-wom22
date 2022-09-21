@@ -10,6 +10,12 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MzI4NGU3N
 
 
 ###
+//get query där archived är true
+GET {{notesURL}}/notes/?archived=ture
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MzI4NGU3NjUyNjI4MzU0OTNmNGUzYWIiLCJlbWFpbCI6Imhhbm5hQGdtYWlsLmZpIiwiaWF0IjoxNjYzNTg5MTk3fQ.H4eXLE-RDFoRYywChs8_Wgk77i6nT4gm4vJs_J8beu0
+
+
+###
 
 GET {{notesURL}}/notes/632af34d666933343df7e211
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MzI4NGU3NjUyNjI4MzU0OTNmNGUzYWIiLCJlbWFpbCI6Imhhbm5hQGdtYWlsLmZpIiwiaWF0IjoxNjYzNTg5MTk3fQ.H4eXLE-RDFoRYywChs8_Wgk77i6nT4gm4vJs_J8beu0
@@ -37,3 +43,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MzI4NGU3N
 }
 
 ###
+
+DELETE {{notesURL}}/notes/632b02643fd0c4bc97889de8
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MzI4NGU3NjUyNjI4MzU0OTNmNGUzYWIiLCJlbWFpbCI6Imhhbm5hQGdtYWlsLmZpIiwiaWF0IjoxNjYzNTg5MTk3fQ.H4eXLE-RDFoRYywChs8_Wgk77i6nT4gm4vJs_J8beu0
+
