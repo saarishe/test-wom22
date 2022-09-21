@@ -46,7 +46,7 @@ router.post('/login', async (req, res) =>{
         //id
         sub: user._id,
         email: user.email 
-    }, process.env.JWT_SECRET)
+    }, process.env.JWT_SECRET, {expiresIn: '1d'})
     res.send({msg: "Log in succesfull", token: token})
 })
 
