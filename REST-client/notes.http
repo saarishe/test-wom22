@@ -1,5 +1,6 @@
 @notesURL = http://localhost:3030
-@azureURL = https://firstappwom.azurewebsites.net
+//@azureURL = https://firstappwom.azurewebsites.net
+
 GET {{notesURL}}/
 
 ###
@@ -10,16 +11,29 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MzI4NGU3N
 
 ###
 
-GET {{notesURL}}/notes/1
+GET {{notesURL}}/notes/632af34d666933343df7e211
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MzI4NGU3NjUyNjI4MzU0OTNmNGUzYWIiLCJlbWFpbCI6Imhhbm5hQGdtYWlsLmZpIiwiaWF0IjoxNjYzNTg5MTk3fQ.H4eXLE-RDFoRYywChs8_Wgk77i6nT4gm4vJs_J8beu0
+
 
 ###
 
 POST {{notesURL}}/notes/
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MzI4NGU3NjUyNjI4MzU0OTNmNGUzYWIiLCJlbWFpbCI6Imhhbm5hQGdtYWlsLmZpIiwiaWF0IjoxNjYzNTg5MTk3fQ.H4eXLE-RDFoRYywChs8_Wgk77i6nT4gm4vJs_J8beu0
 
 {
-    "text": "Duscha"
+    "text": "Note med created by"
 }
 
 ###
 
+
+PATCH {{notesURL}}/notes/632af34d666933343df7e211
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MzI4NGU3NjUyNjI4MzU0OTNmNGUzYWIiLCJlbWFpbCI6Imhhbm5hQGdtYWlsLmZpIiwiaWF0IjoxNjYzNTg5MTk3fQ.H4eXLE-RDFoRYywChs8_Wgk77i6nT4gm4vJs_J8beu0
+
+{
+    "text": "Ny text"
+}
+
+###

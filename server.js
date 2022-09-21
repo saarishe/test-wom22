@@ -18,13 +18,19 @@ db.on('open', () => console.log('Connected to DB'))
 //ta emot json
 app.use(express.json())
 
-app.get('/', (req, res)=>{
-res.send(`Express says hello!`)
-})
+/*
+app.get('/', (req, res) =>){
+    res.send({msg: "HELLO FROM EXPRESS"})
+}*/
 
+//visa statisk sida på site root 
+app.use('/public', express.static(__dirname + '/public'))
+
+//notes
 const notesRouter = require('./routes/notes')
 app.use('/notes', notesRouter)
 
+//users
 const usersRouter = require('./routes/users')
 app.use('/users', usersRouter)
 
