@@ -16,28 +16,29 @@ function showLogIn() {
 }
 
 async function getNotes() {
+
     const resp = await fetch(API_URL + '/notes', {
-        //ett objekt med config
         method: "GET",
         headers: {
             "Authorization": "Bearer " + localStorage.getItem('jwt')
-        }
+        } 
     });
-    if (resp.status > 201) {
-        console.log(error);
-        return showLogIn();
+    
+    if (resp.status > 201) return showLogin();
+   
+    const notes = await resp.json();
+
+    console.log(notes);
+    let notesHTML = "";
+    for (const note of notes) {
+        notesHTML += `
+            <div class="note">${note.text}</div>
+        `;
     }
-};
 
-const notes = await resp.json();
-console.log(notes);
-let notesHTML = "";
-
-for (const note of notes) {
-    notesHTML += `<div class= "note">${note.text}</div>`;
     document.querySelector('#notes').innerHTML = notesHTML;
-};
 
+}
 async function login() {
     const resp = await fetch(API_URL + '/users/login', {
         method: "POST",
