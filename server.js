@@ -6,6 +6,8 @@ const mongoose = require('mongoose')
 //portnummer (om inte 3030 finns så hittar den rätta)
 const PORT = process.env.PORT || 3030
 
+const cors = require('cors');
+
 //import dotenv och läsa in .env-fil
 require('dotenv').config()
 
@@ -17,6 +19,7 @@ db.on('open', () => console.log('Connected to DB'))
 
 //ta emot json
 app.use(express.json())
+app.use(cors())
 
 /*
 app.get('/', (req, res) =>){

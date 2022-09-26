@@ -1,8 +1,8 @@
 @baseURL = http://localhost:3030
+@token = Bearer {{$dotenv TOKEN}}
 
 GET {{baseURL}}/users
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MzI4NGU3NjUyNjI4MzU0OTNmNGUzYWIiLCJlbWFpbCI6Imhhbm5hQGdtYWlsLmZpIiwiaWF0IjoxNjYzNTg5MTk3fQ.H4eXLE-RDFoRYywChs8_Wgk77i6nT4gm4vJs_J8beu0
-
+Authorization: {{token}}
 
 ### Skapa ny användare, skriv i json format
 

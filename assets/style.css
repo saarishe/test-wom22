@@ -1,0 +1,9 @@
+.notes{
+    margin: 10px;
+    border: 1px solid gray;
+    border-radius: 5px;
+    background-color: aquamarine;
+    padding: 8px;
+    max-width: 150px;
+    float: left;
+}
